@@ -1,0 +1,13 @@
+/home/hp/mt7601u_61_ap/main.o
+/home/hp/mt7601u_61_ap/dma.o
+/home/hp/mt7601u_61_ap/core.o
+/home/hp/mt7601u_61_ap/mac.o
+/home/hp/mt7601u_61_ap/mcu.o
+/home/hp/mt7601u_61_ap/phy.o
+/home/hp/mt7601u_61_ap/eeprom.o
+/home/hp/mt7601u_61_ap/init.o
+/home/hp/mt7601u_61_ap/usb.o
+/home/hp/mt7601u_61_ap/tx.o
+/home/hp/mt7601u_61_ap/debugfs.o
+/home/hp/mt7601u_61_ap/util.o
+/home/hp/mt7601u_61_ap/trace.o
