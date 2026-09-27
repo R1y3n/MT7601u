@@ -32,10 +32,6 @@ This repository also includes fixes related to monitor mode configuration, frame
 
 Main Fix: STBC Reception
 
-The most important change is located in:
-
-initvals.h
-
 The MT7601U hardware supports receiving STBC transmissions, but the required baseband setting was not enabled.
 
 STBC, or Space-Time Block Coding, is an 802.11n feature that allows an access point to transmit encoded data across multiple antennas.
@@ -53,20 +49,6 @@ Enabling "STBC_RX_EN" allows the adapter to correctly handle supported STBC tran
 
 ---
 
-Monitor Mode
-
-Monitor mode allows a wireless adapter to capture raw 802.11 frames rather than only receiving traffic addressed directly to the adapter.
-
-This is useful for:
-
-- Wireless packet analysis
-- Network debugging
-- 802.11 protocol research
-- Wi-Fi troubleshooting
-- Inspecting management and control frames
-- Capturing traffic for analysis tools
-- Studying 802.11n behavior
-
 The changes in this repository focus on making monitor mode behave more correctly with the MT7601U chipset.
 
 ---
@@ -80,10 +62,6 @@ NL80211_FEATURE_ACTIVE_MONITOR
 This behavior was removed from the modified driver.
 
 The change avoids the previous handling involving a hardcoded assigned MAC address and allows monitor mode operation to behave more appropriately for the intended use of the adapter.
-
-The modification is located in:
-
-init.c
 
 ---
 
@@ -111,10 +89,6 @@ RXWI bit 8
 
 The definition already existed in the driver, but it was not being read and used when processing received frames.
 
-The changes in:
-
-mac.c
-
 ensure that FCS/CRC-failed frames are properly identified instead of being treated without the appropriate error information.
 
 ---
@@ -130,10 +104,6 @@ When using aggregated MAC Protocol Data Units (A-MPDUs), 802.11 devices can tran
 The driver already defined:
 
 MT_RX_FILTR_CFG_BAR
-
-inside:
-
-regs.h
 
 However, the flag was missing from the mapping used by:
 
@@ -153,8 +123,6 @@ Changes Included
 
 The modifications affect the following parts of the driver:
 
-"initvals.h"
-
 Enables STBC reception through:
 
 STBC_RX_EN
@@ -163,17 +131,11 @@ This is the main fix and allows the baseband to perform STBC decoding for suppor
 
 ---
 
-"init.c"
-
-Removes:
-
 NL80211_FEATURE_ACTIVE_MONITOR
 
 This removes the previous active-monitor behavior involving a hardcoded assigned MAC address.
 
 ---
-
-"mac.c"
 
 Adds handling for:
 
@@ -182,8 +144,6 @@ MT_RXINFO_CRCERR
 allowing received frames with CRC/FCS errors to be properly identified.
 
 ---
-
-"main.c"
 
 Adds the missing:
 
